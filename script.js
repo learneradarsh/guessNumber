@@ -17,7 +17,7 @@ function generateMagicNumber() {
   return Math.trunc(Math.random() * 20) + 1;
 }
 
-function isGameLost(score) {
+function isGameLost() {
   return score <= 0;
 }
 
@@ -44,16 +44,13 @@ function play() {
     alert('Please enter valid value');
   } else if (getInputNum === magicNumber) {
     handleWinGame();
-  } else if (getInputNum < magicNumber) {
-    if (!isGameLost(score)) {
-      document.querySelector('.message').textContent = 'Number is too low ):';
-      --score;
-    } else {
-      handleLostGame();
-    }
-  } else if (getInputNum > magicNumber) {
-    if (!isGameLost(score)) {
-      document.querySelector('.message').textContent = 'Number is too high ):';
+  } else if (getInputNum !== magicNumber) {
+    if (!isGameLost()) {
+      getInputNum < magicNumber
+        ? (document.querySelector('.message').textContent =
+            'Number is too low ):')
+        : (document.querySelector('.message').textContent =
+            'Number is too high ):');
       --score;
     } else {
       handleLostGame();
