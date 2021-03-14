@@ -35,6 +35,7 @@ function handleWinGame() {
   if (score > highScore) {
     recordHighScore(score);
   }
+  document.querySelector('.check').disabled = 'true';
 }
 
 function play() {
@@ -73,6 +74,7 @@ function setInitialScores() {
 }
 
 function playAgain() {
+  document.querySelector('.check').removeAttribute('disabled');
   magicNumber = generateMagicNumber();
   console.log(magicNumber);
   setInitialScores();
