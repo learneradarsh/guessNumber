@@ -22,15 +22,14 @@ function isGameLost() {
 }
 
 function handleLostGame() {
-  document.querySelector('.message').textContent = 'You lost the GAME ):';
+  displayMessage('You lost the GAME');
   score = 0;
 }
 
 function handleWinGame() {
   document.querySelector('.number').textContent = magicNumber;
   document.querySelector('body').style.backgroundColor = '#60b347';
-  document.querySelector('.message').textContent =
-    'Congratulations! Number Matched';
+  displayMessage('Congratulations! Number Matched');
   ++score;
   if (score > highScore) {
     recordHighScore(score);
@@ -47,10 +46,8 @@ function play() {
   } else if (getInputNum !== magicNumber) {
     if (!isGameLost()) {
       getInputNum < magicNumber
-        ? (document.querySelector('.message').textContent =
-            'Number is too low ):')
-        : (document.querySelector('.message').textContent =
-            'Number is too high ):');
+        ? displayMessage('Number is too low ):')
+        : displayMessage('Number is too high ):');
       --score;
     } else {
       handleLostGame();
@@ -76,7 +73,11 @@ function playAgain() {
   console.log(magicNumber);
   setInitialScores();
   document.querySelector('body').style.backgroundColor = '#222';
-  document.querySelector('.message').textContent = 'Start guessing...';
+  displayMessage('Start guessing...');
   document.querySelector('.number').textContent = '?';
   document.querySelector('.guess').value = '';
+}
+
+function displayMessage(message) {
+  document.querySelector('.message').textContent = message;
 }
